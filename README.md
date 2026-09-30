@@ -1,37 +1,53 @@
-# RING//BREAK
+<div align="center">
+
+# Chella Krishnan D
+
+### Backend & Full-Stack Engineer
+
+**Distributed Systems · Real-Time Applications · Applied ML & Cloud**
+
+*Building scalable, production-oriented systems that think, sync, and scale.*
+
+[![GitHub](https://img.shields.io/badge/GitHub-iamkr07-181717?style=for-the-badge&logo=github)](https://github.com/iamkr07)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Chella%20Krishnan%20D-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/chella-krishnan-d-a91172383)
+[![Email](https://img.shields.io/badge/Email-iamkrishnawriter%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:iamkrishnawriter@gmail.com)
+
+[About](#about) · [Projects](#featured-projects) · [Skills](#technical-skills) · [Education](#education) · [Certifications](#certifications) · [Contact](#contact)
+
+</div>
+
+---
+
+## About
+
+I am a Computer Science engineering student in Trichy, India, focused on backend and full-stack development. I build real-time collaboration platforms, cloud infrastructure intelligence, enterprise workflow systems, and graph-based fraud detection.
+
+- **Systems over screens.** Architecture, data flow, and reliability come first; the interface follows.
+- **Decisions backed by data.** I combine machine learning with rule-based logic so outputs stay explainable and auditable.
+- **Production mindset.** Every project is deployed, documented, and structured for real use.
+
+---
+
+## At a Glance
+
+| Project | Domain | Core Idea | Live |
+| :--- | :--- | :--- | :--- |
+| **RING//BREAK** | Fraud detection · Graph ML | GAT + four-agent forensic pipeline | [Open](https://ringbreak-fraud-detection.vercel.app/) |
+| **CodeSync** | Real-time systems | Collaborative coding with AI code intelligence | [Open](https://code-sync-sooty.vercel.app/) |
+| **CloudPulse** | Cloud intelligence | ML-driven EC2 resource optimization | [Open](https://cloud-resource.vercel.app/) |
+| **TaskForge** | Enterprise workflow | RBAC project and task orchestration | [Open](https://project-management-system-mu-seven.vercel.app/login) |
+
+---
+
+## Featured Projects
+
+### 🔍 RING//BREAK
 
 **Financial Fraud Ring Detection & Multi-Agent Forensic Platform**
 
-An autonomous, GNN-powered platform for detecting fraud rings, analyzing transaction graphs, and running multi-agent investigations across large-scale financial networks.
+An autonomous platform for detecting fraud rings, analyzing transaction graphs, and running multi-agent investigations across large-scale financial networks. It pairs a Graph Attention Network with a sequential agent pipeline to surface circular laundering loops, fan-in layering patterns, and repeat-offender networks.
 
-![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/Frontend-React%2018-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![PyTorch](https://img.shields.io/badge/ML-PyTorch%20%2F%20PyG-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Deployment](https://img.shields.io/badge/Deployment-Railway%20%2F%20Vercel-000000?style=for-the-badge&logo=railway&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [System Architecture](#system-architecture)
-- [Live Demo](#live-demo)
-- [API Reference](#api-reference)
-- [Getting Started](#getting-started)
-- [Deployment](#deployment)
-- [License](#license)
-
----
-
-## Overview
-
-RING//BREAK is a financial crime investigation engine built to detect, analyze, and disrupt coordinated fraud rings hidden within high-velocity transaction streams.
-
-The platform is built on the synthetic **AMLSim** dataset and pairs **Graph Attention Networks (GAT)** with an **autonomous multi-agent intelligence pipeline**. Together they surface circular laundering loops, fan-in layering patterns, and repeat-offender networks.
+**Live:** <https://ringbreak-fraud-detection.vercel.app/>
 
 | Dataset Metric | Value |
 | :--- | :--- |
@@ -39,48 +55,23 @@ The platform is built on the synthetic **AMLSim** dataset and pairs **Graph Atte
 | Account nodes | 1,000 |
 | Alert clusters | 40 |
 
----
+**Key capabilities**
 
-## Key Features
+- **Graph intelligence:** A 2-layer GAT detects tightly bound subgraphs and cyclic transaction loops, with learned edge attention weights highlighting suspicious corridors.
+- **Fast graph access:** Pre-indexed adjacency tables give O(1) neighbor lookups across 117k+ transactions.
+- **Multi-agent investigation:** Four specialized agents collaborate on every flagged transaction.
+- **Investigator security:** Authenticated access, an instant tab-switch lock screen (`visibilitychange`), and AES password-protected PDF reports keyed to the investigation Trace ID.
 
-### Graph Attention Network Engine
-
-- **Structural clique detection** – identifies tightly bound subgraphs and cyclic transaction loops using a 2-layer GAT.
-- **Edge attention weights** – learned weights highlight suspicious transaction corridors.
-- **Fast graph indexing** – pre-indexed adjacency tables provide O(1) node-neighbor lookups across 117k+ transactions.
-
-### Autonomous Multi-Agent Forensic Pipeline
-
-When a transaction is flagged, four specialized agents collaborate sequentially:
+**Agent pipeline**
 
 | Agent | Responsibility |
 | :--- | :--- |
-| **Detection Agent** | Analyzes velocity, amount anomalies, and alert pattern history. |
-| **Topology Agent** | Extracts graph metrics: clustering coefficient, cycle depth, and fan-in/fan-out degree. |
-| **Risk Assessment Agent** | Computes a dynamic risk score (0–100) from graph topology and historical recurrence. |
-| **Countermeasure Simulation Agent** | Recommends account freezes, transaction holds, or enhanced due diligence (EDD). |
+| Detection Agent | Analyzes velocity, amount anomalies, and alert pattern history |
+| Topology Agent | Extracts clustering coefficient, cycle depth, and fan-in/fan-out degree |
+| Risk Assessment Agent | Computes a dynamic 0–100 risk score from topology and historical recurrence |
+| Countermeasure Simulation Agent | Recommends account freezes, transaction holds, or enhanced due diligence |
 
-### Security & Investigator Controls
-
-- **Investigator authentication** – access requires authenticated investigator credentials.
-- **Tab-switch lock screen** – the application locks immediately when the investigator switches browser tabs (via the `visibilitychange` event).
-- **Encrypted forensic reports** – investigation summaries are exported as AES password-protected PDFs, using the investigation **Trace ID** as the password to support compliance workflows.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-| :--- | :--- |
-| Backend | Python 3.11+, FastAPI, Uvicorn |
-| Machine Learning | PyTorch, PyTorch Geometric (GAT) |
-| Frontend | React 18, TypeScript, Tailwind CSS, Vite |
-| Data | AMLSim synthetic transaction dataset |
-| Hosting | Railway / Render (backend), Vercel / Netlify (frontend) |
-
----
-
-## System Architecture
+**Architecture**
 
 ```mermaid
 graph TD
@@ -103,150 +94,110 @@ graph TD
     AGENT --> RS[Risk Scoring Engine]
 ```
 
----
-
-## Live Demo
-
-**Deployed application:** https://ringbreak-fraud-detection-pu6ys9sic-cse271025-sudos-projects.vercel.app/
+**Stack:** `Python` `FastAPI` `PyTorch` `PyTorch Geometric` `React 18` `TypeScript` `Tailwind CSS` `Vite`
+**Deployment:** Railway (backend) · Vercel (frontend)
 
 ---
 
-## API Reference
+### 💻 CodeSync
 
-### Health
+**Real-Time Collaborative Coding Platform**
 
-```http
-GET /health
-```
+A collaborative coding platform supporting synchronized multi-user code editing and live programming sessions, with AI-powered code intelligence built in.
 
-**Response `200 OK`**
+**Live:** <https://code-sync-sooty.vercel.app/>
 
-```json
-{
-  "status": "ok"
-}
-```
+**Key capabilities**
 
-### Dataset Status
+- **Live collaboration:** Synchronized multi-user editing with concurrent conflict resolution.
+- **Low-latency communication:** Socket.IO WebSocket architecture delivering real-time, bi-directional session synchronization.
+- **AI code intelligence:** Gemini API integration for automated code analysis, optimization suggestions, and interview-mode assistance workflows.
+- **Scalable session state:** Event-driven session management with distributed persistence on Firebase Firestore, tracking collaboration state across concurrent sessions.
 
-```http
-GET /amlsim/status
-```
-
-**Response `200 OK`**
-
-```json
-{
-  "sourceDataset": "AMLSim",
-  "mode": "LIVE",
-  "datasetAvailable": true,
-  "transactionCount": 117533,
-  "accountCount": 1000,
-  "alertGroupCount": 40,
-  "backendReachable": true
-}
-```
-
-### Fraud Ring Check
-
-```http
-GET /amlsim/ring-check/{transaction_id}
-```
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `transaction_id` | string | ID of the transaction to evaluate. |
-
-**Response `200 OK`**
-
-```json
-{
-  "transactionId": "10253",
-  "detected": true,
-  "reason": "Alert group #12 cycle membership found.",
-  "ring": {
-    "ringId": "AMLSIM-ALERT-12",
-    "confidence": 92,
-    "members": ["793", "752", "783"],
-    "memberCount": 3,
-    "transactionVolume": 5,
-    "amountInvolved": 10250.0,
-    "currency": "USD"
-  }
-}
-```
+**Stack:** `React.js` `Socket.IO` `Node.js` `Firebase` `Gemini API`
 
 ---
 
-## Getting Started
+### ☁️ CloudPulse
 
-### Prerequisites
+**Cloud Infrastructure Monitoring & Analytics Platform**
 
-- Python 3.11+
-- Node.js 18+
-- npm 9+
+A monitoring and analytics platform for performance tracking, intelligent auto-scaling simulation, and resource optimization across AWS environments.
 
-### 1. Backend
+**Live:** <https://cloud-resource.vercel.app/>
 
-```bash
-git clone https://github.com/your-org/ring-fraud.git
-cd ring-fraud/backend
+**Key capabilities**
 
-# Create and activate a virtual environment
-python -m venv .venv
-source .venv/bin/activate      # Windows: .venv\Scripts\activate
+- **ML-driven prediction:** Random Forest models predict infrastructure utilization states to support data-driven EC2 resource allocation and cost optimization.
+- **Interactive dashboards:** Real-time views of CPU, memory, and workload analytics with simulation-driven scaling recommendations.
+- **Decision-intelligence pipelines:** Workload-based EC2 instance recommendation workflows.
+- **Modular backend:** FastAPI microservices for provisioning-efficiency recommendations.
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Start the FastAPI server
-uvicorn app.main:app --host 0.0.0.0 --port 8000
-```
-
-### 2. Frontend
-
-```bash
-cd ../frontend
-
-# Install dependencies
-npm install
-
-# Start the Vite development server
-npm run dev
-```
-
-Open <http://localhost:5173> in your browser.
+**Stack:** `React.js` `FastAPI` `Scikit-learn` `Pandas` `AWS`
 
 ---
 
-## Deployment
+### 📋 TaskForge
 
-### Backend (Railway / Render)
+**Enterprise Workflow & Project Management Platform**
 
-| Setting | Value |
+A full-stack workflow management platform for structured project tracking, task orchestration, and real-time team collaboration across multi-role organizations.
+
+**Live:** <https://project-management-system-mu-seven.vercel.app/login>
+
+**Key capabilities**
+
+- **Role-based access control:** Admin, Manager, and User roles with secure JWT-based authentication and dynamic dashboard routing.
+- **Lifecycle management:** End-to-end project and task tracking with priority classification, deadline tracking, and persistent activity logging.
+- **Real-time collaboration:** Firestore NoSQL data models and synchronization pipelines enabling cross-user updates with sub-second latency.
+
+**Stack:** `React.js` `Firebase` `Firestore` `Tailwind CSS`
+
+---
+
+## Technical Skills
+
+| Category | Technologies |
 | :--- | :--- |
-| Root directory | `backend/` |
-| Build | Dependencies installed from `requirements.txt` |
-| Start command | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
-| Port | Dynamic `$PORT` (or `8080`) |
-
-### Frontend (Vercel / Netlify)
-
-| Setting | Value |
-| :--- | :--- |
-| Root directory | `frontend/` |
-| Framework preset | Vite |
-| Build command | `npm run build` |
-| Output directory | `dist` |
-
-Set the following environment variable:
-
-```env
-VITE_API_BASE_URL=https://ringbreak-fraud-detection-production-e148.up.railway.app
-```
+| **Languages** | Python, Java, C++, JavaScript, TypeScript |
+| **Web & Backend** | React.js, Next.js, Node.js, Express.js, REST APIs, WebSockets, Socket.IO |
+| **Databases** | MongoDB, MySQL, PostgreSQL, Firebase Firestore |
+| **Cloud & DevOps** | AWS (EC2, S3, Lambda), Docker, Git, Linux |
+| **AI/ML & Data** | PyTorch, Scikit-learn, OpenCV, YOLO, Pandas, NumPy |
+| **Tools & Technologies** | JWT Authentication, Postman, FastAPI, Gemini API |
 
 ---
 
-## License
+## Education
 
-This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
+**Saranathan College of Engineering**, Trichy, India
+Bachelor of Engineering · CGPA 8.28 / 10.0 · Aug 2024 – May 2028
+
+---
+
+## Certifications
+
+| Certification | Issuer |
+| :--- | :--- |
+| AWS Cloud Practitioner Essentials | Amazon Web Services |
+| Introduction to Machine Learning | Google Cloud Skills Boost |
+| Intro to Machine Learning & Python | Kaggle |
+| Back End Development and APIs Certification | freeCodeCamp |
+| Introduction to Cybersecurity | Cisco Networking Academy |
+
+---
+
+## Contact
+
+- **Email:** [iamkrishnawriter@gmail.com](mailto:iamkrishnawriter@gmail.com)
+- **LinkedIn:** [Chella Krishnan D](https://linkedin.com/in/chella-krishnan-d-a91172383)
+- **GitHub:** [iamkr07](https://github.com/iamkr07)
+- **Location:** Trichy, India
+
+---
+
+<div align="center">
+
+*I don't just build apps. I build systems that think, sync, and scale.*
+
+</div>
