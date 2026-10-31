@@ -893,12 +893,12 @@ class AMLSimService:
             for t in candidate_txs[:20]
         ]
 
+        gnn_eval: dict[str, Any] = {}
         try:
-            from app.services.gnn_service import gnn_service
-            if gnn_service._is_trained:
-                gnn_eval = gnn_service.evaluate_clique_for_transaction(tx, candidate_txs)
-            else:
-                gnn_eval = {}
+            import sys
+            _gnn_module = sys.modules.get("app.services.gnn_service")
+            if _gnn_module is not None and _gnn_module.gnn_service._is_trained:
+                gnn_eval = _gnn_module.gnn_service.evaluate_clique_for_transaction(tx, candidate_txs)
         except Exception:
             gnn_eval = {}
 
@@ -1000,5 +1000,4 @@ class AMLSimService:
 
 
 amlsim_service = AMLSimService()
-
 
