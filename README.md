@@ -4,9 +4,9 @@
 
 ### Financial Fraud Ring Detection & Multi-Agent Forensic Platform
 
-An autonomous, GNN-powered platform for detecting fraud rings, analyzing transaction graphs, and conducting multi-agent investigations across large-scale financial networks.
+A graph-powered platform for detecting fraud rings, analyzing transaction networks, and running staged forensic investigations across large-scale financial data.
 
-**[Live Demo](https://ringbreak-fraud-detection.vercel.app/)**
+**[Live Demo](https://ringbreak-fraud-detection-six.vercel.app/)**
 
 </div>
 
@@ -29,13 +29,13 @@ An autonomous, GNN-powered platform for detecting fraud rings, analyzing transac
 
 ## Overview
 
-RING//BREAK is a financial crime investigation engine designed to detect, analyze, and disrupt coordinated fraud rings concealed within high-velocity transaction streams.
+RING//BREAK is a financial crime investigation engine designed to detect, analyze, and disrupt coordinated fraud rings concealed within high-volume transaction data.
 
-The platform is built on the synthetic **AMLSim** dataset and combines **Graph Attention Networks (GAT)** with an **autonomous multi-agent intelligence pipeline**. Together, they identify circular laundering loops, fan-in layering patterns, and repeat-offender networks.
+The platform is built on the synthetic **AMLSim** dataset. It combines a trained fraud classifier, graph analysis, and a **Graph Attention Network (GAT)** with a staged investigation pipeline. Together, they surface circular laundering loops, fan-in layering patterns, and repeat-offender networks.
 
 | Dataset Metric | Value |
 | :--- | :--- |
-| Transaction edges | 117,000+ |
+| Transactions | 117,533 |
 | Account nodes | 1,000 |
 | Alert clusters | 40 |
 
@@ -43,28 +43,33 @@ The platform is built on the synthetic **AMLSim** dataset and combines **Graph A
 
 ## Key Features
 
-### Graph Attention Network Engine
+### Graph Attention Network
 
-- **Structural clique detection:** Identifies tightly bound subgraphs and cyclic transaction loops using a 2-layer GAT.
-- **Edge attention weights:** Learned weights highlight suspicious transaction corridors.
-- **Fast graph indexing:** Pre-indexed adjacency tables provide O(1) node-neighbor lookups across 117k+ transactions.
+- **Structural clique detection:** A two-layer graph attention network, implemented in PyTorch, identifies tightly connected subgraphs and cyclic transaction loops.
+- **Edge attention weights:** Learned attention weights highlight suspicious transaction corridors.
+- **Fast graph indexing:** Transactions are pre-indexed by account, so neighbor lookups are dictionary hits instead of full scans of the 117k transactions.
 
-### Autonomous Multi-Agent Forensic Pipeline
+### Staged Forensic Pipeline
 
-When a transaction is flagged, four specialized agents collaborate sequentially:
+Every transaction, whether injected from a scenario or taken from the AMLSim dataset, runs through the same sequence of stages. Each stage is recorded in an inspectable trace.
 
-| Agent | Responsibility |
+| Stage | Responsibility |
 | :--- | :--- |
-| **Detection Agent** | Analyzes velocity, amount anomalies, and alert pattern history. |
-| **Topology Agent** | Extracts graph metrics: clustering coefficient, cycle depth, and fan-in/fan-out degree. |
-| **Risk Assessment Agent** | Computes a dynamic risk score (0–100) from graph topology and historical recurrence. |
-| **Countermeasure Simulation Agent** | Recommends account freezes, transaction holds, or enhanced due diligence (EDD). |
+| **Ingestion** | Accepts and validates the transaction payload. |
+| **Feature Engine** | Derives behavioural features such as amount, type and balance movement. |
+| **ML Intelligence** | Scores fraud probability with a calibrated gradient-boosting classifier (scikit-learn). |
+| **Graph Intelligence** | Builds the account/transaction network around the event. |
+| **Ring Detection** | Looks for circular flows and coordinated alert-group patterns. |
+| **Investigator Agents** | Behaviour, Network and Evidence agents produce findings from the earlier stages. |
+| **Risk Assessment** | Combines model, graph and agent evidence into a 0-100 risk score. |
+| **Response / Countermeasure** | Recommends holds, reviews or enhanced due diligence. Simulation only; no real action is taken. |
+| **Report Generation** | Compiles the forensic report for export. |
 
-### Security & Investigator Controls
+### Investigator Controls
 
-- **Investigator authentication:** Access requires authenticated investigator credentials.
-- **Tab-switch lock screen:** The application locks immediately when the investigator switches browser tabs, using the `visibilitychange` event.
-- **Encrypted forensic reports:** Investigation summaries are exported as AES password-protected PDFs, with the investigation **Trace ID** as the password to support compliance workflows.
+- **Investigator login screen:** The workspace sits behind a login gate.
+- **Tab-switch lock screen:** The application locks when the investigator switches browser tabs, using the `visibilitychange` event.
+- **Password-protected forensic reports:** Investigation summaries are exported as password-protected PDFs, with the investigation **Trace ID** as the password.
 
 ---
 
@@ -72,11 +77,11 @@ When a transaction is flagged, four specialized agents collaborate sequentially:
 
 | Layer | Technology |
 | :--- | :--- |
-| Backend | Python 3.11+, FastAPI, Uvicorn |
-| Machine Learning | PyTorch, PyTorch Geometric (GAT) |
+| Backend | Python 3.11, FastAPI, Uvicorn |
+| Machine Learning | scikit-learn (fraud classifier), PyTorch (graph attention network), NetworkX |
 | Frontend | React 18, TypeScript, Tailwind CSS, Vite |
 | Data | AMLSim synthetic transaction dataset |
-| Hosting | Railway / Render (backend), Vercel / Netlify (frontend) |
+| Hosting | Render (backend), Vercel (frontend) |
 
 ---
 
@@ -84,30 +89,34 @@ When a transaction is flagged, four specialized agents collaborate sequentially:
 
 ```mermaid
 graph TD
-    UI[React 18 + Tailwind Frontend] -->|REST / HTTPS| API[FastAPI Gateway]
+    UI["React 18 + Tailwind Frontend (Vercel)"] -->|"REST / HTTPS"| API["FastAPI Backend (Render)"]
 
-    subgraph Security Layer
-        AUTH[Investigator Auth]
-        LOCK[Tab-Switch Lock Screen]
-        PDF[Encrypted Report Generator]
+    subgraph Client Controls
+        AUTH["Investigator Login"]
+        LOCK["Tab-Switch Lock Screen"]
     end
 
-    subgraph Backend Core Engine
-        API --> AML[AMLSim Data Service]
-        API --> GNN[GNN Graph Intelligence]
-        API --> AGENT[Multi-Agent Pipeline]
+    subgraph Backend Engine
+        API --> AML["AMLSim Data Service"]
+        API --> PIPE["Staged Investigation Pipeline"]
+        API --> GNN["GAT Clique Analysis"]
+        API --> PDF["Protected PDF Export"]
     end
 
-    AML --> DATA[(117k+ Transactions Dataset)]
-    GNN --> GAT[PyTorch Graph Attention Model]
-    AGENT --> RS[Risk Scoring Engine]
+    AML --> DATA[("AMLSim Dataset")]
+    PIPE --> CLF["Fraud Classifier"]
+    PIPE --> RING["Ring Detection"]
+    PIPE --> RISK["Risk Scoring"]
+    GNN --> GAT["PyTorch Graph Attention Model"]
 ```
 
 ---
 
 ## Live Demo
 
-**Deployed application:** [https://ringbreak-fraud-detection.vercel.app/](https://ringbreak-fraud-detection.vercel.app/)
+**Deployed application:** [https://ringbreak-fraud-detection-six.vercel.app/](https://ringbreak-fraud-detection-six.vercel.app/)
+
+> **Note:** The backend runs on Render's free tier, which sleeps after 15 minutes without traffic. The first request after a pause can take up to a minute while it wakes up. Subsequent requests are fast.
 
 ---
 
@@ -157,7 +166,7 @@ GET /amlsim/ring-check/{transaction_id}
 | :--- | :--- | :--- |
 | `transaction_id` | string | ID of the transaction to evaluate. |
 
-**Response `200 OK`**
+**Response `200 OK`** (abridged)
 
 ```json
 {
@@ -176,13 +185,30 @@ GET /amlsim/ring-check/{transaction_id}
 }
 ```
 
+### Other Endpoints
+
+| Method | Path | Purpose |
+| :--- | :--- | :--- |
+| `GET` | `/amlsim/transactions` | Paginated AMLSim transactions (`offset`, `limit`, `is_fraud`, `search`). |
+| `GET` | `/amlsim/accounts` | Paginated AMLSim accounts. |
+| `GET` | `/amlsim/alerts` | Alert rows from the dataset. |
+| `GET` | `/amlsim/patterns` | Alert pattern clusters. |
+| `GET` | `/amlsim/presets` | Curated benign and fraud sample transactions. |
+| `GET` | `/amlsim/investigate/{transaction_id}` | Full investigation for a dataset transaction. |
+| `GET` | `/gnn/cliques/{transaction_id}` | GAT prediction, clique and attention weights. |
+| `GET` | `/scenarios` | Built-in demo scenarios. |
+| `POST` | `/scenarios/{scenario_id}/investigate` | Run a scenario through the pipeline. |
+| `POST` | `/transactions/inject` | Run a custom transaction payload through the pipeline. |
+| `GET` | `/investigations/{id}/report` | Forensic report for an investigation. |
+| `POST` | `/export-protected-pdf` | Generate a password-protected PDF report. |
+
 ---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.11
 - Node.js 18+
 - npm 9+
 
@@ -209,6 +235,9 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```bash
 cd ../frontend
 
+# Point the frontend at your local backend
+echo "VITE_API_BASE_URL=http://localhost:8000" > .env.local
+
 # Install dependencies
 npm install
 
@@ -222,29 +251,48 @@ Open <http://localhost:5173> in your browser.
 
 ## Deployment
 
-### Backend (Railway / Render)
+The backend and frontend are deployed separately.
+
+### Backend: Render (free tier)
 
 | Setting | Value |
 | :--- | :--- |
-| Root directory | `backend/` |
-| Build | Dependencies installed from `requirements.txt` |
+| Root directory | `backend` |
+| Runtime | Python 3 |
+| Build command | `pip install -r requirements.txt` |
 | Start command | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
-| Port | Dynamic `$PORT` (or `8080`) |
+| Health check path | `/health` |
+| Instance type | Free |
 
-### Frontend (Vercel / Netlify)
+Environment variables:
+
+| Variable | Value |
+| :--- | :--- |
+| `PYTHON_VERSION` | A full 3.11 version, for example `3.11.9` |
+| `RINGBREAK_CORS_ORIGINS` | The exact frontend origin, for example `https://ringbreak-fraud-detection-six.vercel.app` (no trailing slash; separate multiple origins with commas) |
+
+### Frontend: Vercel
 
 | Setting | Value |
 | :--- | :--- |
-| Root directory | `frontend/` |
+| Root directory | `frontend` |
 | Framework preset | Vite |
 | Build command | `npm run build` |
 | Output directory | `dist` |
 
-Set the following environment variable:
+Set the following environment variable **before** building, because Vite embeds it at build time:
 
 ```env
-VITE_API_BASE_URL=https://ringbreak-fraud-detection-production-e148.up.railway.app
+VITE_API_BASE_URL=https://ringbreak-backend.onrender.com
 ```
+
+After changing it, redeploy the frontend so the new value is picked up.
+
+### Free-tier behaviour
+
+- **Cold starts:** the backend sleeps after 15 minutes idle and takes up to a minute to wake. Open `/health` shortly before a demo, or use an uptime pinger.
+- **Ephemeral storage:** investigations created at runtime are not persisted across restarts or redeploys. The AMLSim dataset and the model ship with the repository.
+- **Memory:** the free instance has 512 MB of RAM, so heavy, optional endpoints such as `/gnn/cliques/{transaction_id}` may be slow or unavailable on it.
 
 ---
 
@@ -257,4 +305,4 @@ VITE_API_BASE_URL=https://ringbreak-fraud-detection-production-e148.up.railway.a
 
 ## License
 
-This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
+Released under the MIT License.
